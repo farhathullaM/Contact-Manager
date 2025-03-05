@@ -1,7 +1,9 @@
 import { errorCodes } from "../constants.js";
 
 export const errorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode ? res.statusCode : 500;
+  console.log("respose" , res.statusCode)
+  const statusCode = res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
+  res.status(statusCode);
 console.log("StatusCode", statusCode)
   switch (statusCode) {
     case errorCodes.VALIDATION_ERROR:
