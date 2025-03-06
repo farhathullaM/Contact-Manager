@@ -1,10 +1,10 @@
 import { errorCodes } from "../constants.js";
 
 export const errorHandler = (err, req, res, next) => {
-  console.log("respose" , res.statusCode)
-  const statusCode = res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
+  console.log("response", res.statusCode);
+  const statusCode =
+    res.statusCode && res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode);
-console.log("StatusCode", statusCode)
   switch (statusCode) {
     case errorCodes.VALIDATION_ERROR:
       res.json({
@@ -36,6 +36,6 @@ console.log("StatusCode", statusCode)
 
     default:
       console.log("No error ");
-      res.send("ok")
+      res.sendStatus(res.statusCode);
   }
 };
